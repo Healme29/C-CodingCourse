@@ -1,0 +1,67 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+const double PI =3.14159265358979323846;
+
+// Square : 1 parameter (side)
+double getArea(double side) {
+    return side * side;
+}
+
+// Circle : 1 parameter (radius)
+double getArea(float radius) {
+    return PI * radius * radius;
+}
+
+// Triangle : 2 parameters (base and height)
+double getArea(float base, float height) {
+    return 0.5 * base * height;
+}
+
+// Rectangle : 2 parameters (length and width)
+double getArea(double length, double width) {
+    return length * width;
+}
+
+int main() {
+    
+    //Square
+    double side = 5.0;
+    cout << "Area" << endl;
+    cout << " " << endl;
+
+    cout << "side = " << side << endl;
+    cout << "Area of Square: " << getArea(side) << endl;
+
+    //circle
+    float radius = 10.0f;
+    cout << "Area" << endl;
+    cout << " " << endl;
+
+    cout << "Radius = " << radius << endl;
+    cout << "Area of Circle: " << getArea(radius) << endl;
+
+     //Triangle
+    float base = 2.0f , height = 3.0f;
+    cout << "Area" << endl;
+    cout << " " << endl;
+
+    cout << "Base  = " << base << endl;
+    cout << "Height = " << height << endl;
+    cout << "Area of Triangle: " << getArea(base , height) << endl;
+
+    //Rectangle 
+    double length = 5.0 , width = 4.0;
+    cout << "Area" << endl;
+    cout << " " << endl;
+ 
+
+    cout << "Length = " << length << endl;
+    cout << "Width  = " << width << endl;
+    cout << "Area of Rectangle: " << getArea(length , width) << endl;
+
+    
+
+    return 0;
+}
