@@ -1,0 +1,56 @@
+#include <iostream>
+using namespace std;
+
+bool isLeapYear(int year) {
+    return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+}
+
+int getDaysInMonth(int month, int year) {
+    switch (month) {
+        case 1: case 3: case 5: case 7:
+        case 8: case 10: case 12:
+            return 31;
+        case 4: case 6: case 9: case 11:
+            return 30;
+        case 2:
+            return isLeapYear(year) ? 29 : 28;
+        default:
+            return 0;
+    }
+}
+
+int daySum(int year, int month = 1, int day = 1) {
+    int total = 0;
+    for (int m = 1; m < month; m++) {
+        total += getDaysInMonth(m, year);
+    }
+    total += day;
+    return total;
+}
+
+int main() {
+    // Test 1: only year → month=1, day=1 by default
+    cout << "Test 1: daySum(2020)" << endl;
+    cout << "Date   : 2020 / January / 1" << endl;
+    cout << "Day Sum: " << daySum(2020) << " days" << endl;
+    cout << endl;
+
+    // Test 2: year + month → day=1 by default
+    cout << "Test 2: daySum(2026, 4)" << endl;
+    cout << "Date   : 2026 / April / 1" << endl;
+    cout << "Day Sum: " << daySum(2026, 4) << " days" << endl;
+    cout << endl;
+
+    // Test 3: all parameters
+    cout << "Test 3: daySum(2024, 4, 2)" << endl;
+    cout << "Date   : 2024 / April / 2" << endl;
+    cout << "Day Sum: " << daySum(2024, 4, 2) << " days" << endl;
+    cout << endl;
+
+    // Test 4: all parameters
+    cout << "Test 4: daySum(2023, 12, 12)" << endl;
+    cout << "Date   : 2023 / December / 12" << endl;
+    cout << "Day Sum: " << daySum(2023, 12, 12) << " days" << endl;
+
+    return 0;
+}
