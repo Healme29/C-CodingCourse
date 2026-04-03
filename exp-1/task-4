@@ -1,0 +1,13 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int exam = 79, programsDone = 13;
+
+    if (exam >= 60 && programsDone >= 10)
+        cout << "Passed" << endl;
+    else
+        cout << "Failed" << endl;
+
+    return 0;
+}
