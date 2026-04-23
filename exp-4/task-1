@@ -1,0 +1,22 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    // first we define two integer arrays
+    int firstScore[10] = {1, 2, 3, 4, 5};
+    int secondScore[5] = {6, 7, 8, 9, 0};
+    
+    // Then copy elements from second array to the end of first array
+    for (int i = 0; i < 5; i++) {
+        firstScore[5 + i] = secondScore[i];
+    }
+    
+    // After that print the result
+    cout << "Result: ";
+    for (int i = 0; i < 10; i++) {
+        cout << firstScore[i] << " ";
+    }
+    cout << endl;
+    
+    return 0;
+}
