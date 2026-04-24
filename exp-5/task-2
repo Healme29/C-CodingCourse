@@ -1,0 +1,71 @@
+#include <iostream>
+using namespace std;
+
+struct Date {
+    int year;
+    int month;
+    int day;
+};
+
+class Student {
+private:
+    int ID;
+    char gender;
+    Date birthday;
+    double cppGrade;
+
+public:
+    Student() {
+        ID = 0;
+        gender = 'M';
+        birthday.year = 2000;
+        birthday.month = 1;
+        birthday.day = 1;
+        cppGrade = 0.0;
+    }
+
+    Student(int i, char g, int y, int m, int d, double grade) {
+        ID = i;
+        gender = g;
+        birthday.year = y;
+        birthday.month = m;
+        birthday.day = d;
+        cppGrade = grade;
+    }
+
+    void output() {
+        cout << "ID: " << ID << endl;
+        cout << "Gender: " << gender << endl;
+        cout << "Birthday: " << birthday.year << "-" << birthday.month << "-" << birthday.day << endl;
+        cout << "C++ Grade: " << cppGrade << endl;
+    }
+
+    double getGrade() {
+        return cppGrade;
+    }
+};
+
+int main() {
+    Student Adrian(1232, 'M', 2007, 3, 15, 92.5);
+    Student Betrix(1233, 'F', 2006, 7, 22, 88.0);
+    Student Carlos(1234, 'M', 2007, 11, 5, 95.0);
+
+    Student students[3];
+    students[0] = Adrian;
+    students[1] = Betrix;
+    students[2] = Carlos;
+
+    int bestIdx = 0;
+    for (int i = 1; i < 3; i++) {
+        if (students[i].getGrade() > students[bestIdx].getGrade()) {
+            bestIdx = i;
+        }
+    }
+
+    cout << "  " << endl;
+    cout << "Student with Highest C++ Grade" << endl;
+    cout << "  " << endl;
+    students[bestIdx].output();
+
+    return 0;
+} 
