@@ -1,0 +1,57 @@
+#include <iostream>
+using namespace std;
+
+class Dot {
+private:
+    double x;
+    double y;
+
+public:
+    Dot(double xVal = 0.0, double yVal = 0.0) : x(xVal), y(yVal) {}
+
+    // Overload - operator (vector subtraction)
+    Dot operator-(const Dot& other) const {
+        return Dot(x - other.x, y - other.y);
+    }
+
+    // Overload * operator (vector * scalar)
+    Dot operator*(double scalar) const {
+        return Dot(x * scalar, y * scalar);
+    }
+
+    // Friend function for dot product
+    friend double dotProduct(const Dot& a, const Dot& b);
+
+    // Optional: for easy printing
+    friend ostream& operator<<(ostream& os, const Dot& d);
+};
+
+double dotProduct(const Dot& a, const Dot& b) {
+    return a.x * b.x + a.y * b.y; 
+}
+
+ostream& operator<<(ostream& os, const Dot& d) {
+    os << "(" << d.x << ", " << d.y << ")";
+    return os;
+}
+
+// Demonstration for Task 2 to make sure the code compiles and runs correctly 
+int main() {
+    Dot v1(3, 4);
+    Dot v2(1, 2);
+
+    cout << "v1 = " << v1 << endl;
+    cout << "v2 = " << v2 << endl;
+
+    Dot diff = v1 - v2;
+    cout << "v1 - v2 = " << diff << endl;
+
+    double scalar = 2.5;
+    Dot scaled = v1 * scalar;
+    cout << "v1 * " << scalar << " = " << scaled << endl;
+
+    double dot = dotProduct(v1, v2);
+    cout << "dotProduct(v1, v2) = " << dot << endl;
+
+    return 0;
+}
