@@ -1,0 +1,25 @@
+#include <iostream>
+#include <string>
+#include <cctype>
+using namespace std;
+
+int main() {
+    string sentence;
+    cout << "Enter a sentence: ";
+    getline(cin, sentence);
+
+    string abbreviation = "";
+    bool newWord = true;
+
+    for (char c : sentence) {
+        if (c != ' ' && newWord) {
+            abbreviation += toupper(c);
+            newWord = false;
+        } else if (c == ' ') {
+            newWord = true;
+        }
+    }
+
+    cout << "Abbreviation: " << abbreviation << endl;
+    return 0;
+} 
