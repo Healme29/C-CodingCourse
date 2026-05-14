@@ -1,0 +1,24 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    string sentence;
+    cout << "Enter an English sentence: ";
+    getline(cin, sentence);
+
+    int wordCount = 0;
+    bool inWord = false;
+
+    for (char c : sentence) {
+        if (c != ' ' && !inWord) {
+            wordCount++;
+            inWord = true;
+        } else if (c == ' ') {
+            inWord = false;
+        }
+    }
+
+    cout << "Number of words: " << wordCount << endl;
+    return 0;
+}
