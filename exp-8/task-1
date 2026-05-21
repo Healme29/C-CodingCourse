@@ -1,0 +1,71 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+
+int main() {
+    string name;
+    int grade;
+
+    // Write student data to file 
+    ofstream outFile("scores.txt");
+    if (!outFile) {
+        cout << "Error: Cannot create scores.txt" << endl;
+        return 1;
+    }
+
+    cout << "Enter student name and grade (type 'end' for name to stop):\n";
+    while (true) {
+        cout << "Name: ";
+        cin >> name;
+        if (name == "end") break;
+
+        cout << "Grade: ";
+        while (true) {
+            if (cin >> grade) {
+                break;
+            } else {
+                cout << "Invalid input. Please enter an integer grade: ";
+                cin.clear();
+                cin.ignore(1000, '\n');
+            }
+        }
+        outFile << name << ":" << grade << endl;
+    }
+    outFile.close();
+
+    // Read from file and calculate average 
+    ifstream inFile("scores.txt");
+    if (!inFile) {
+        cout << "Error: Cannot open scores.txt for reading" << endl;
+        return 1;
+    }
+
+    int sum = 0, count = 0;
+    string line;
+    while (getline(inFile, line)) {
+        int colonPos = line.find(':');
+        if (colonPos != -1) {
+            string gradeStr = line.substr(colonPos + 1);
+            int studentGrade = 0;
+            for (int i = 0; i < gradeStr.length(); i++) {
+                char c = gradeStr[i];
+                if (c >= '0' && c <= '9') {
+                    studentGrade = studentGrade * 10 + (c - '0');
+                }
+            }
+            sum += studentGrade;
+            count++;
+        }
+    }
+    inFile.close();
+
+    if (count > 0) {
+        double average = (double)sum / count;  // Using C-style cast
+        cout << "Average grade: " << average << endl;
+    } else {
+        cout << "No data found." << endl;
+    }
+
+    return 0;
+}
