@@ -1,0 +1,62 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+
+int main() {
+    string filename;
+    cout << "Enter the text file name: ";
+    cin >> filename;
+
+    // Open file for reading
+    ifstream inFile(filename);
+    if (!inFile) {
+        cout << "Error: Cannot open file '" << filename << "'" << endl;
+        return 1;
+    }
+
+    int upper = 0, lower = 0, digits = 0, others = 0;
+    int fileSize = 0;   // count bytes (each char = 1 byte) 
+    char ch;
+
+    // Read character by character
+    while (inFile.get(ch)) {
+        fileSize++;   // count every character
+
+        // Check uppercase letters A-Z
+        if (ch >= 'A' && ch <= 'Z') {
+            upper++;
+        }
+        // Check lowercase letters a-z
+        else if (ch >= 'a' && ch <= 'z') {
+            lower++;
+        }
+        // Check digits 0-9
+        else if (ch >= '0' && ch <= '9') {
+            digits++;
+        }
+        // Everything else (spaces, newlines, punctuation, etc.)
+        else {
+            others++;
+        }
+    }
+    inFile.close();
+
+    int total = upper + lower + digits + others;
+
+    // Write report to file
+    ofstream report("statistics_report.txt");
+    report << "CHARACTER STATISTICS REPORT" << endl;
+    report << "  " << endl;
+    report << "File name: " << filename << endl;
+    report << "File size: " << fileSize << " bytes" << endl;
+    report << "Uppercase letters: " << upper << endl;
+    report << "Lowercase letters: " << lower << endl;
+    report << "Digits (0-9): " << digits << endl;
+    report << "Other characters: " << others << endl;
+    report << "Total characters: " << total << endl;
+    report.close();
+
+    cout << "Report saved to statistics_report.txt" << endl;
+    return 0;
+}
