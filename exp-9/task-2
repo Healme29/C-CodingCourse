@@ -1,0 +1,53 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Base class
+class Animal {
+protected:
+    int age;
+public:
+    Animal(int age) : age(age) {}
+    int getAge() { return age; }
+    void describe() {
+        cout << "Age: " << age << endl;
+    }
+};
+
+// Derived class: Mammal
+class Mammal : public Animal {
+protected:
+    string furColor;
+public:
+    Mammal(int age, string furColor) : Animal(age), furColor(furColor) {}
+    string getFurColor() { return furColor; }
+    void describe() {
+        cout << "Age: "       << age      << endl;
+        cout << "Fur color: " << furColor << endl;
+    }
+};
+
+// Derived class: Dog
+class Dog : public Mammal {
+private:
+    string breed;
+public:
+    Dog(int age, string furColor, string breed) : Mammal(age, furColor), breed(breed) {}
+    string getBreed() { return breed; }
+    void describe() {
+        cout << "Age: "       << age      << endl;
+        cout << "Fur color: " << furColor << endl;
+        cout << "Breed: "     << breed    << endl;
+    }
+    string bark() { return "Woof!"; }
+};
+
+int main() {
+    Dog dog(2, "black", "German Shepherd");
+
+    cout << "=== Dog Info ===" << endl;
+    dog.describe();
+    cout << "Dog says: " << dog.bark() << endl;
+
+    return 0;
+}
