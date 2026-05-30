@@ -1,0 +1,51 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Shape {
+protected:
+    string color;
+public:
+    Shape(string color) : color(color) {}
+    string getColor() { return color; }
+    double getArea() { return 0; }
+};
+
+class Rectangle : public Shape {
+private:
+    double width, height;
+public:
+    Rectangle(string color, double width, double height) : Shape(color), width(width), height(height) {}
+    double getArea() { return width * height; }
+};
+
+class Circle : public Shape {
+private:
+    double radius;
+public:
+    Circle(string color, double radius) : Shape(color), radius(radius) {}
+    double getArea() { return 3.14159 * radius * radius; }
+};
+
+void printInfo(Rectangle& rect) {
+    cout << "Color: " << rect.getColor() << endl;
+    cout << "Area:  " << rect.getArea() << endl;
+}
+
+void printInfo(Circle& circ) {
+    cout << "Color: " << circ.getColor() << endl;
+    cout << "Area:  " << circ.getArea() << endl;
+}
+
+int main() {
+    Rectangle rect("black", 9.0, 11.0);
+    Circle circ("pink", 10.0);
+
+    cout << "=== Rectangle ===" << endl;
+    printInfo(rect);
+
+    cout << "\n=== Circle ===" << endl;
+    printInfo(circ);
+
+    return 0;
+}
